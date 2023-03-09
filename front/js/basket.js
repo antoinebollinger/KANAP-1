@@ -1,5 +1,4 @@
-/*let addProduct = document.getElementById('addToCart')
-let seeStorage = document.getElementById('seeStorage')
+/*let seeStorage = document.getElementById('seeStorage')
 
 addProduct.addEventListener('click', function () {
     const iPhone = {
@@ -42,21 +41,26 @@ addProduct.addEventListener('click', function () {
 // Il y a plusieurs besoin de recharger à chaque fois les fonctions
 
 class Basket {
-    constructor() {
-        // Transformer la chaîne de caractères en objet
-        // On enregistre dans une variable se qu'on a récupéré
-        let basket = localStorage.getItem("basket");
-        // ça va envoyer null parce que par défaut quand l'utilisateur arrive sur le site il a pas encore ajouter de produit dans son panier, du coup le panier n'existe pas dans le localstorage
-        // Si oui, ça veux dire que le panier n'existe pas
-        if(basket == null) {
-            // Retourne un tableau vide
-            this.basket = [];
-        }
-        // Sinon non, ça veut dire que le panier existe
-        else {
-            // Retourne en JSON
-            this.basket = JSON.parse(basket);
-        }
+    addProduct = document.getElementById('addToCart');
+    constructor() {  
+        this.addProduct?.addEventListener("click", () => {
+            // Transformer la chaîne de caractères en objet
+            // On enregistre dans une variable se qu'on a récupéré
+            let basket = localStorage.getItem("basket");
+            // ça va envoyer null parce que par défaut quand l'utilisateur arrive sur le site il a pas encore ajouter de produit dans son panier, du coup le panier n'existe pas dans le localstorage
+            // Si oui, ça veux dire que le panier n'existe pas
+            if(basket == null) {
+                // Retourne un tableau vide
+                this.basket = [];
+            }
+            // Sinon non, ça veut dire que le panier existe
+            else {
+                // Transforme en objet
+                this.basket = JSON.parse(basket);
+            }
+
+        })
+    
     }
 
     // Enregistrer les produits dans le localstorage
