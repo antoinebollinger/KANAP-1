@@ -38,7 +38,7 @@ addProduct.addEventListener('click', function () {
 
 // localstorage permet d'enregistrer les données et en plus sécurisé que les cookies
 // Mode Orienté Objet
-// Il y a plusieurs besoin de recharger à chaque fois les fonctions
+// Il y a plus besoin de recharger à chaque fois les fonctions
 
 class Basket {
     addProduct = document.getElementById('addToCart');

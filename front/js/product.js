@@ -7,8 +7,8 @@ async function fonctionPrincipale() {
     .then(convertir => {
       if (convertir.ok) {
           convertir.json()
-            .then(executerAfficherProduits => {
-                ajouterLesProduitsDansLaPage(executerAfficherProduits);
+            .then(afficherProduits => {
+                ajouterLesProduitsDansLaPage(afficherProduits);
             })
       } else {
           console.log('Retour du serveur : ', convertir.status);
@@ -44,7 +44,7 @@ async function fonctionPrincipale() {
 //     })
 // }
 
-function ajouterLesProduitsDansLaPage(executerAfficherProduits) {
+function ajouterLesProduitsDansLaPage(afficherProduits) {
 
   // 0. récupérer l'ancre dans la page
   const ancreImage = document.querySelector('.item__img')
@@ -56,26 +56,28 @@ function ajouterLesProduitsDansLaPage(executerAfficherProduits) {
   // On parcourt les produits disponibles dans l'API
     // On ajoute une image
     const image = document.createElement('img')
-    ancreImage.src = executerAfficherProduits.imageUrl
-    ancreImage.alt = executerAfficherProduits.altTxt
+    ancreImage.setAttribute('src', afficherProduits.imageUrl)
+    ancreImage.setAttribute('alt', afficherProduits.altTxt)
+    /*ancreImage.src = afficherProduits.imageUrl
+    ancreImage.alt = afficherProduits.altTxt*/
     ancreImage.appendChild(image)
 
     // On ajoute un h3 à l'article
     const nom = document.createElement('h3')
-    nom.innerHTML = executerAfficherProduits.name;
+    nom.innerHTML = afficherProduits.name;
     title.appendChild(nom)
       
     // On ajoute un paragraphe à l'article
     const descriptionDuProduit = document.createElement('p')
-    descriptionDuProduit.innerHTML = executerAfficherProduits.description
+    descriptionDuProduit.innerHTML = afficherProduits.description
     description.appendChild(descriptionDuProduit)
 
     // On ajoute un paragraphe pour le prix
     const prix = document.createElement('p')
-    prix.innerHTML = executerAfficherProduits.price
+    prix.innerHTML = afficherProduits.price
     price.appendChild(prix)
 
-    for (let color of executerAfficherProduits.colors) {
+    for (let color of afficherProduits.colors) {
       // On crée l'élément
       let options = document.createElement('option');
       // innerHTML veut dire afficher en html la balise <option> avec les couleurs ${colors}
@@ -98,28 +100,28 @@ fonctionPrincipale()
  // On parcourt les produits disponibles dans l'API
     // On ajoute une image
     /*const image = document.createElement('img')
-    ancreImage.src = executerAfficherProduits.imageUrl
-    ancreImage.alt = executerAfficherProduits.altTxt
+    ancreImage.src = afficherProduits.imageUrl
+    ancreImage.alt = afficherProduits.altTxt
     ancreImage.appendChild(image)
 
     // On ajoute un titre pour le dessin
     const nom = document.createElement('h3')
-    nom.innerHTML = executerAfficherProduits.name;
+    nom.innerHTML = afficherProduits.name;
     title.appendChild(nom)
       
     // On ajoute un paragraphe qui décrit le dessin
     const descriptionDuProduit = document.createElement('p')
-    descriptionDuProduit.innerHTML = executerAfficherProduits.description
+    descriptionDuProduit.innerHTML = afficherProduits.description
     description.appendChild(descriptionDuProduit)
 
     // On ajoute le prix du dessin
     const prix = document.createElement('p')
-    prix.innerHTML = executerAfficherProduits.price
+    prix.innerHTML = afficherProduits.price
     price.appendChild(prix)
 
     // Le même dessin à plusieurs versions de couleurs, alors on choisit au choix la version
     // Je passe chaque version à afficher à l'écran
-    for (let color of executerAfficherProduits.colors) {
+    for (let color of afficherProduits.colors) {
       // On crée l'élément
       let options = document.createElement('option');
       // innerHTML veut dire afficher en html la balise <option> avec les couleurs ${colors}
@@ -130,8 +132,28 @@ fonctionPrincipale()
 
 }*/
 
-function product(id,quantity,colors){
-  this.id = id;
-  this.quantity = quantity;
-  this.colors = colors;
+class optionsProduct {
+    constructor(id, quantity, color) {
+        this.id = id;
+        this.quantity = quantity;
+        this.colors = colors;
+    }
+};
+
+// Envoyer les informations sur le produit au stockage local
+class Panier {
+    addProduct = document.getElementById('addToCart');
+    ancreImage = document.querySelector('.item__img')
+    ancreDuTitre = document.getElementById('title')
+    ancreDeLaDescription = document.getElementById('description')
+    ancreDuPrix = document.getElementById('price')
+    ancreCouleurs = document.getElementById('colors')
+    ancreContent = document.querySelector('.item__content__settings');
+
+    constructor() { 
+
+        
+
+    }
+
 }
