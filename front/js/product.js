@@ -56,8 +56,10 @@ function ajouterLesProduitsDansLaPage(afficherProduits) {
   // On parcourt les produits disponibles dans l'API
     // On ajoute une image
     const image = document.createElement('img')
-    ancreImage.setAttribute('src', afficherProduits.imageUrl)
-    ancreImage.setAttribute('alt', afficherProduits.altTxt)
+    // Ajoute un nouvel attribut ou change la valeur d'un attribut existant pour l'élément spécifié. 
+    // Si l'attribut existe déjà, la valeur est mise à jour ; sinon, un nouvel attribut est ajouté avec le nom et la valeur spécifiés.
+    image.setAttribute('src', afficherProduits.imageUrl)
+    image.setAttribute('alt', afficherProduits.altTxt)
     /*ancreImage.src = afficherProduits.imageUrl
     ancreImage.alt = afficherProduits.altTxt*/
     ancreImage.appendChild(image)
