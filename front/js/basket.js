@@ -40,7 +40,7 @@ addProduct.addEventListener('click', function () {
 // Mode Orienté Objet
 // Il y a plus besoin de recharger à chaque fois les fonctions
 
-class Basket {
+/*class Basket {
     addProduct = document.getElementById('addToCart');
     constructor() {  
         this.addProduct?.addEventListener("click", () => {
@@ -126,4 +126,75 @@ class Basket {
         return total;
     }
 
-}
+}*/
+
+addProduct = document.getElementById('addToCart');
+
+addProduct.addEventListener("click", function add () {
+
+        let id = new URLSearchParams(window.location.search).get("id");
+        let quantity = document.getElementById("quantity").value;
+        let color = document.getElementById("colors").value;
+      
+        if (quantity == 0 || color == null) {
+          alert("Veuillez remplir tous les champs");
+          return;
+        }
+      
+        // On crée un objet avec l'id, la quantité et la couleur
+        let product = {
+          id: id,
+          quantity: quantity,
+          color: color,
+        };
+      
+        // Si l'utilisateur sélectionne le même produit avec la même couleur, nous ajoutons la quantité au produit existant, sinon, nous ajoutons le produit au panier
+        let basket = localStorage.getItem("basket");
+        //  si le panier existe déjà dans le local storage
+        if (basket != null) {
+            // Convertit le contenu du panier en objet JavaScript à partir du JSON du local storage
+            basket = JSON.parse(basket);
+            // Parcourt tous les éléments du panier
+            for (let i = 0; i < basket.length; i++) {
+                // Si le produit à ajouter a le même id et la même couleur qu'un produit déjà présent dans le panier
+                if (basket[i].id == product.id && basket[i].color == product.color) {
+                    // Ajoute la quantité du nouveau produit à la quantité du produit existant dans le panier
+                    basket[i].quantity =
+                    parseInt(basket[i].quantity) + parseInt(product.quantity);
+                    // Met à jour le contenu du panier dans le local storage avec la nouvelle quantité
+                    localStorage.setItem("basket", JSON.stringify(basket));
+                    alert("Le produit a bien été ajouté au panier");
+                    return;
+                } else {
+                    // Si le produit à ajouter n'existe pas déjà dans le panier, il faut l'ajouter à la fin du panier
+                    basket.push(product);
+                    // Met à jour le contenu du panier dans le local storage avec le nouveau produit ajouté
+                    localStorage.setItem("basket", JSON.stringify(basket));
+                    alert("Le produit a bien été ajouté au panier");
+                    return;
+                }
+            }
+
+        } else {
+            // Si le panier n'existe pas encore, crée un nouveau panier vide
+            basket = [];
+            // Ajoute le produit à ce nouveau panier
+            basket.push(product);
+            // Stocke le contenu du panier dans le local storage
+            localStorage.setItem("basket", JSON.stringify(basket));
+            alert("Le produit a bien été ajouté au panier");
+            return;
+        }
+
+})
+
+addProduct.addEventListener("click", function prixTotal () {
+
+    // Prix Total au panier
+    let total = 0;
+    for(let product of basket) {
+        total += product.quantity * product.price;
+    }
+    return total;
+
+})
