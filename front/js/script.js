@@ -1,3 +1,6 @@
+import {disBonjour} from './test.js';
+disBonjour('Pierre');
+
 const products = [
     {
       "colors": ["Blue", "White", "Black"],

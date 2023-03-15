@@ -187,14 +187,3 @@ addProduct.addEventListener("click", function add () {
         }
 
 })
-
-addProduct.addEventListener("click", function prixTotal () {
-
-    // Prix Total au panier
-    let total = 0;
-    for(let product of basket) {
-        total += product.quantity * product.price;
-    }
-    return total;
-
-})
