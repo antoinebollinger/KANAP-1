@@ -1,5 +1,5 @@
-import {disBonjour} from './test.js';
-disBonjour('Pierre');
+/*import {disBonjour} from './test.js';
+disBonjour('Pierre');*/
 
 const products = [
     {

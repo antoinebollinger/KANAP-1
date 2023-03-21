@@ -149,12 +149,13 @@ addProduct.addEventListener("click", function add () {
         };
       
         // Si l'utilisateur sélectionne le même produit avec la même couleur, nous ajoutons la quantité au produit existant, sinon, nous ajoutons le produit au panier
+        
         let basket = localStorage.getItem("basket");
         //  si le panier existe déjà dans le local storage
         if (basket != null) {
             // Convertit le contenu du panier en objet JavaScript à partir du JSON du local storage
             basket = JSON.parse(basket);
-            // Parcourt tous les éléments du panier
+            // Parcours tous les éléments du panier
             for (let i = 0; i < basket.length; i++) {
                 // Si le produit à ajouter a le même id et la même couleur qu'un produit déjà présent dans le panier
                 if (basket[i].id == product.id && basket[i].color == product.color) {
